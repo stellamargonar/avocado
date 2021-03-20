@@ -6,7 +6,7 @@
 
 I2CSoilMoistureSensor moistureSensor;
 
-int MOISTURE_CHINA_PIN = 0;
+int MOISTURE_PIN = 0;
 
 void setupENV() {
   if (! ENV.begin()) {
@@ -28,15 +28,10 @@ int readLux() {
   return ENV.readLux();
 }
 
-int readMoistureOld() {
-  Serial.println("Read Moisture");
-  while (moistureSensor.isBusy()) delay(50);
-  int capacitance = moistureSensor.getCapacitance();
-  Serial.println(capacitance);
-  return capacitance;
+int readHumidity() {
+  return ENV.readHumidity();
 }
 
-
 int readMoisture() {
-  return analogRead(MOISTURE_CHINA_PIN);
+  return analogRead(MOISTURE_PIN);
 }
